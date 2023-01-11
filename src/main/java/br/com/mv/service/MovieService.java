@@ -33,7 +33,9 @@ public class MovieService implements IMovieService {
 	@Override
 	public Movie updateById (Long id, Movie movie) {
 		Movie updatedMovie = this.getById(id);
+
 		this.updateData(updatedMovie, movie);
+
 		return this.movieRepository.save(updatedMovie);
 	}
 

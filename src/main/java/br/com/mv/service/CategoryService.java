@@ -1,7 +1,6 @@
 package br.com.mv.service;
 
 import br.com.mv.domain.Category;
-import br.com.mv.domain.Movie;
 import br.com.mv.exceptions.BadRequestException;
 import br.com.mv.exceptions.NotFoundException;
 import br.com.mv.repository.CategoryRepository;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service

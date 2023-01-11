@@ -1,9 +1,7 @@
 package br.com.mv.controller;
 
 import br.com.mv.domain.Category;
-import br.com.mv.domain.Movie;
 import br.com.mv.dto.category.CategoryDTO;
-import br.com.mv.dto.movies.MovieDTO;
 import br.com.mv.service.inteface.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

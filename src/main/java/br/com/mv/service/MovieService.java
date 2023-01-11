@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import br.com.mv.repository.MovieRepository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service

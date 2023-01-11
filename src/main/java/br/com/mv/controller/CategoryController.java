@@ -1,16 +1,18 @@
 package br.com.mv.controller;
 
 import br.com.mv.domain.Category;
+import br.com.mv.domain.Movie;
 import br.com.mv.dto.category.CategoryDTO;
+import br.com.mv.dto.movies.MovieDTO;
 import br.com.mv.service.inteface.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/categories")
@@ -43,11 +45,10 @@ public class CategoryController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<CategoryDTO>> getAll() {
-		List<Category> list = this.categoryService.getAll();
-		List<CategoryDTO> listDto = list.stream()
-				.map(x -> toCategoryDTO(x))
-				.collect(Collectors.toList());
+	public ResponseEntity<Page<CategoryDTO>> getAll(@PageableDefault(sort = "id") Pageable pagination) {
+		Page<Category> list = this.categoryService.getAll(pagination);
+
+		Page<CategoryDTO> listDto = list.map(x -> toCategoryDTO(x));
 
 		return ResponseEntity.ok().body(listDto);
 	}

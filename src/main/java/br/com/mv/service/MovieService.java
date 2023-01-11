@@ -5,6 +5,8 @@ import br.com.mv.exceptions.BadRequestException;
 import br.com.mv.exceptions.NotFoundException;
 import br.com.mv.service.inteface.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.mv.repository.MovieRepository;
@@ -47,8 +49,8 @@ public class MovieService implements IMovieService {
 	}
 
 	@Override
-	public List<Movie> getAll() {
-		return this.movieRepository.findAll();
+	public Page<Movie> getAll(Pageable pagination) {
+		return this.movieRepository.findAll(pagination);
 	}
 
 	@Override

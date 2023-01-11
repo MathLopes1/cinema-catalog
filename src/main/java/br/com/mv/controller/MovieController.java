@@ -6,13 +6,13 @@ import br.com.mv.dto.movies.MovieDTO;
 import br.com.mv.service.inteface.IMovieService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/movies")
@@ -49,11 +49,10 @@ public class MovieController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<MovieDTO>> getAll() {
-		List<Movie> list = this.movieService.getAll();
-		List<MovieDTO> listDto = list.stream()
-				.map(x -> toMovieDTO(x))
-				.collect(Collectors.toList());
+	public ResponseEntity<Page<MovieDTO>> getAll(@PageableDefault(sort = "title") Pageable pagination) {
+		Page<Movie> list = this.movieService.getAll(pagination);
+
+		Page<MovieDTO> listDto = list.map(x -> toMovieDTO(x));
 
 		return ResponseEntity.ok().body(listDto);
 	}

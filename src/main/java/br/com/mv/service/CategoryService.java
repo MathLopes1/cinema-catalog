@@ -1,16 +1,16 @@
 package br.com.mv.service;
 
 import br.com.mv.domain.Category;
-import br.com.mv.domain.Movie;
 import br.com.mv.exceptions.BadRequestException;
 import br.com.mv.exceptions.NotFoundException;
 import br.com.mv.repository.CategoryRepository;
 import br.com.mv.service.inteface.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,8 +47,8 @@ public class CategoryService implements ICategoryService {
 	}
 
 	@Override
-	public List<Category> getAll() {
-		return this.categoryRepository.findAll();
+	public Page<Category> getAll(Pageable pagination) {
+		return this.categoryRepository.findAll(pagination);
 	}
 
 	@Override

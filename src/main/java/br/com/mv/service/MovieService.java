@@ -36,7 +36,7 @@ public class MovieService implements IMovieService {
 	@Override
 	public Movie getById(Long id) {
 		Optional<Movie> patient = this.movieRepository.findById(id);
-		return patient.orElseThrow(() -> new Error("object not found"));
+		return patient.orElseThrow(() -> new RuntimeException("object not found"));
 	}
 
 	@Override
@@ -51,9 +51,18 @@ public class MovieService implements IMovieService {
 	}
 
 	private void updateData(Movie updateMovie, Movie movie) {
-		updateMovie.setDuration(movie.getDuration());
-		updateMovie.setTitle(movie.getTitle());
-		updateMovie.setYear(movie.getYear());
+		if(movie.getDuration() != null) {
+			updateMovie.setDuration(movie.getDuration());
+		}
+
+		if(movie.getTitle() != null) {
+			updateMovie.setTitle(movie.getTitle());
+		}
+
+		if(movie.getYear() > 0) {
+			updateMovie.setYear(movie.getYear());
+		}
+
 		updateMovie.setUpdatedAt(LocalDateTime.now());
 	}
 }

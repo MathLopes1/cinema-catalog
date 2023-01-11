@@ -1,6 +1,7 @@
 package br.com.mv.controller;
 
 import br.com.mv.domain.Movie;
+import br.com.mv.dto.movies.CreateMovieResDTO;
 import br.com.mv.dto.movies.MovieDTO;
 import br.com.mv.service.inteface.IMovieService;
 import org.modelmapper.ModelMapper;
@@ -27,13 +28,16 @@ public class MovieController {
 		return this.modelMapper.map(movie, MovieDTO.class);
 	}
 
+
 	@PostMapping
-	public ResponseEntity<MovieDTO> create(@RequestBody MovieDTO movieDTO) {
+	public ResponseEntity<CreateMovieResDTO> create(@RequestBody MovieDTO movieDTO) {
 
 		Movie newMovie = this.modelMapper.map(movieDTO, Movie.class);
 		newMovie = this.movieService.create(newMovie);
 
-		return new ResponseEntity<MovieDTO>(toMovieDTO(newMovie), HttpStatus.CREATED);
+		return new ResponseEntity<CreateMovieResDTO>(
+				this.modelMapper.map(newMovie, CreateMovieResDTO.class),
+				HttpStatus.CREATED);
 	}
 
 	@PutMapping("/{id}")
@@ -65,6 +69,6 @@ public class MovieController {
 	public ResponseEntity<Void> deleteById(@PathVariable Long id) {
 		this.movieService.deleteById(id);
 
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

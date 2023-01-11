@@ -52,8 +52,14 @@ public class CategoryService implements ICategoryService {
 	}
 
 	private void updateData(Category updateCategory, Category category) {
-		updateCategory.setName(category.getName());
-		updateCategory.setDescription(category.getDescription());
+		if(category.getName() != null) {
+			updateCategory.setName(category.getName());
+		}
+
+		if(category.getDescription() != null) {
+			updateCategory.setDescription(category.getDescription());
+		}
+
 		updateCategory.setUpdatedAt(LocalDateTime.now());
 	}
 }

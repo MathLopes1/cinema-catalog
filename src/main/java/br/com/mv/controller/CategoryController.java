@@ -63,6 +63,6 @@ public class CategoryController {
 	public ResponseEntity<Void> deleteById(@PathVariable Long id) {
 		this.categoryService.deleteById(id);
 
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -1,8 +1,7 @@
-package br.com.mv.dto;
+package br.com.mv.dto.category;
 
 import br.com.mv.domain.AbstractEntity;
 import br.com.mv.enums.NameCategory;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,6 @@
 package br.com.mv.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

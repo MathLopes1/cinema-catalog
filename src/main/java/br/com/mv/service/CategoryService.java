@@ -20,6 +20,9 @@ public class CategoryService implements ICategoryService {
 
 	@Override
 	public Category create(Category category) {
+		category.setCreatedAt(LocalDateTime.now());
+		category.setUpdatedAt(LocalDateTime.now());
+
 		Category newCategory = this.categoryRepository.save(category);
 		return newCategory;
 	}

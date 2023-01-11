@@ -1,6 +1,8 @@
 package br.com.mv.service;
 
 import br.com.mv.domain.Movie;
+import br.com.mv.exceptions.BadRequestException;
+import br.com.mv.exceptions.NotFoundException;
 import br.com.mv.service.inteface.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ public class MovieService implements IMovieService {
 
 	@Override
 	public Movie create(Movie movie) {
+		this.validationForMovieCreation(movie);
+
 		movie.setCreatedAt(LocalDateTime.now());
 		movie.setUpdatedAt(LocalDateTime.now());
 
@@ -35,8 +39,9 @@ public class MovieService implements IMovieService {
 
 	@Override
 	public Movie getById(Long id) {
-		Optional<Movie> patient = this.movieRepository.findById(id);
-		return patient.orElseThrow(() -> new RuntimeException("object not found"));
+		Optional<Movie> movie = this.movieRepository.findById(id);
+
+		return movie.orElseThrow(() -> new NotFoundException("Filme não existe!"));
 	}
 
 	@Override
@@ -47,6 +52,7 @@ public class MovieService implements IMovieService {
 	@Override
 	public void deleteById(Long id) {
 		this.getById(id);
+
 		this.movieRepository.deleteById(id);
 	}
 
@@ -64,5 +70,13 @@ public class MovieService implements IMovieService {
 		}
 
 		updateMovie.setUpdatedAt(LocalDateTime.now());
+	}
+
+	private void validationForMovieCreation(Movie movie) {
+		Optional<Movie> movieForValidation = this.movieRepository.findByTitle(movie.getTitle());
+
+		if(movieForValidation.isPresent()) {
+			throw new BadRequestException("Filme já cadastrado!");
+		}
 	}
 }

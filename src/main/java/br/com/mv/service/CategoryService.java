@@ -1,9 +1,7 @@
 package br.com.mv.service;
 
 import br.com.mv.domain.Category;
-import br.com.mv.domain.Movie;
 import br.com.mv.repository.CategoryRepository;
-import br.com.mv.repository.MovieRepository;
 import br.com.mv.service.inteface.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

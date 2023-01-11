@@ -73,7 +73,7 @@ public class CategoryService implements ICategoryService {
 		Optional<Category> categoryForValidation = this.categoryRepository.findByName(category.getName());
 
 		if(categoryForValidation.isPresent()) {
-			throw new BadRequestException("Categoria já cadastrado!");
+			throw new BadRequestException("Categoria já cadastrada!");
 		}
 	}
 }

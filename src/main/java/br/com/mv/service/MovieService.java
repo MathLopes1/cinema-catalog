@@ -68,7 +68,7 @@ public class MovieService implements IMovieService {
 			updateMovie.setTitle(movie.getTitle());
 		}
 
-		if(movie.getYear() > 0) {
+		if(movie.getYear() != null) {
 			updateMovie.setYear(movie.getYear());
 		}
 

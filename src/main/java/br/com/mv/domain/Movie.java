@@ -24,7 +24,7 @@ public class Movie extends AbstractEntity implements Serializable {
 
 	private String title;
 
-	private int year;
+	private String year;
 
 	private String duration;
 

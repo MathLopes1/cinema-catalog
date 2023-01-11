@@ -2,6 +2,7 @@ package br.com.mv.dto.category;
 
 import br.com.mv.domain.AbstractEntity;
 import br.com.mv.enums.NameCategory;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.io.Serializable;
@@ -18,5 +19,6 @@ public class CategoryDTO extends AbstractEntity implements Serializable  {
 
     private NameCategory name;
 
+    @NotBlank(message = "Descrição da categoria não pode ser vazia.")
     private String description ;
 }

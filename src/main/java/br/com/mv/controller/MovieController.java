@@ -4,6 +4,7 @@ import br.com.mv.domain.Movie;
 import br.com.mv.dto.movies.CreateMovieResDTO;
 import br.com.mv.dto.movies.MovieDTO;
 import br.com.mv.service.inteface.IMovieService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public class MovieController {
 
 
 	@PostMapping
-	public ResponseEntity<CreateMovieResDTO> create(@RequestBody MovieDTO movieDTO) {
+	public ResponseEntity<CreateMovieResDTO> create(@RequestBody @Valid MovieDTO movieDTO) {
 
 		Movie newMovie = this.modelMapper.map(movieDTO, Movie.class);
 		newMovie = this.movieService.create(newMovie);

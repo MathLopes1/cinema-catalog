@@ -3,6 +3,7 @@ package br.com.mv.controller;
 import br.com.mv.domain.Category;
 import br.com.mv.dto.category.CategoryDTO;
 import br.com.mv.service.inteface.ICategoryService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public class CategoryController {
 	}
 
 	@PostMapping
-	public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO categoryDTO) {
+	public ResponseEntity<CategoryDTO> create(@RequestBody @Valid CategoryDTO categoryDTO) {
 		Category newCategory = this.modelMapper.map(categoryDTO, Category.class);
 		newCategory = this.categoryService.create(newCategory);
 

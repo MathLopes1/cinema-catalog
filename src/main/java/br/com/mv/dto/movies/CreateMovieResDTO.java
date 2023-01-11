@@ -19,7 +19,7 @@ public class CreateMovieResDTO extends AbstractEntityDTO {
 
     private String title;
 
-    private int year;
+    private String year;
 
     private String duration;
 }

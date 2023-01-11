@@ -1,8 +1,8 @@
 package br.com.mv.controller;
 
 import br.com.mv.domain.Category;
-import br.com.mv.dto.CategoryDTO;
-import br.com.mv.service.CategoryService;
+import br.com.mv.dto.category.CategoryDTO;
+import br.com.mv.service.inteface.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class CategoryController {
 	
 	@Autowired
-	private CategoryService categoryService;
+	private ICategoryService categoryService;
 
 	@Autowired
 	private ModelMapper modelMapper;

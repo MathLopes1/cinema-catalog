@@ -1,14 +1,14 @@
 package br.com.mv.controller;
 
 import br.com.mv.domain.Movie;
-import br.com.mv.dto.MovieDTO;
+import br.com.mv.dto.movies.MovieDTO;
+import br.com.mv.service.inteface.IMovieService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.mv.service.MovieService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class MovieController {
 	
 	@Autowired
-	private MovieService movieService;
+	private IMovieService movieService;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -29,6 +29,7 @@ public class MovieController {
 
 	@PostMapping
 	public ResponseEntity<MovieDTO> create(@RequestBody MovieDTO movieDTO) {
+
 		Movie newMovie = this.modelMapper.map(movieDTO, Movie.class);
 		newMovie = this.movieService.create(newMovie);
 

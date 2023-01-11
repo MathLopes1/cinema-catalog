@@ -19,6 +19,9 @@ public class MovieService implements IMovieService {
 
 	@Override
 	public Movie create(Movie movie) {
+		movie.setCreatedAt(LocalDateTime.now());
+		movie.setUpdatedAt(LocalDateTime.now());
+
 		Movie newMovie = movieRepository.save(movie);
 		return newMovie;
 	}

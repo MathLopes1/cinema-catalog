@@ -1,8 +1,12 @@
-package br.com.mv.domain;
+package br.com.mv.dto;
 
+import br.com.mv.domain.AbstractEntity;
 import br.com.mv.enums.NameCategory;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -10,14 +14,9 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "tb_category")
-public class Category extends AbstractEntity implements Serializable  {
+public class CategoryDTO extends AbstractEntity implements Serializable  {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     private NameCategory name;

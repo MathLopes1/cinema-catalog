@@ -54,14 +54,14 @@ public class MovieController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<MovieDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<MovieDTO> getById(@PathVariable Long id) {
 		Movie movie = this.movieService.getById(id);
 
 		return new ResponseEntity<MovieDTO>(toMovieDTO(movie), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteById(@PathVariable Long id) {
 		this.movieService.deleteById(id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

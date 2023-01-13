@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public abstract class AbstractException extends RuntimeException{
-    private String erro;
-    private String descricao;
+    private String error;
+    private String description;
 }

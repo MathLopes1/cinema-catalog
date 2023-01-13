@@ -14,13 +14,13 @@ public class GlobalExceptionsController {
 
     @ExceptionHandler(value = BadRequestException.class)
     public ResponseEntity<ErrorMessageDTO> badRequestError (BadRequestException ex) {
-        ErrorMessageDTO badRequest = new ErrorMessageDTO(HttpStatus.BAD_REQUEST.value(), ex.getErro(), ex.getDescricao());
+        ErrorMessageDTO badRequest = new ErrorMessageDTO(HttpStatus.BAD_REQUEST.value(), ex.getError(), ex.getDescription());
         return new ResponseEntity<ErrorMessageDTO>(badRequest, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity<ErrorMessageDTO> notFoundError (NotFoundException ex) {
-        ErrorMessageDTO badRequest = new ErrorMessageDTO(HttpStatus.NOT_FOUND.value(), ex.getErro(), ex.getDescricao());
+        ErrorMessageDTO badRequest = new ErrorMessageDTO(HttpStatus.NOT_FOUND.value(), ex.getError(), ex.getDescription());
         return new ResponseEntity<ErrorMessageDTO>(badRequest, HttpStatus.NOT_FOUND);
     }
 }
